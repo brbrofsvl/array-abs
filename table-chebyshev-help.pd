@@ -1,2 +1,0 @@
-#N canvas 0 22 450 300 10;
-#X obj 147 82 table-chebyshev;

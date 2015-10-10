@@ -1,2 +1,0 @@
-#N canvas 432 444 960 525 10;
-#X obj 584 93 array define insertionsort-help;
