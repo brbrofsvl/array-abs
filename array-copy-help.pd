@@ -1,0 +1,53 @@
+#N canvas 424 28 680 302 10;
+#X obj 418 113 array define array-copy-help;
+#X obj 418 140 array define array-copy-paste;
+#N canvas 0 22 474 448 fill 0;
+#X obj 65 64 loadbang;
+#X obj 65 114 until;
+#X obj 65 176 f;
+#X obj 102 177 + 1;
+#X obj 63 292 tabwrite array-copy-help;
+#X msg 65 87 100;
+#X obj 171 72 inlet;
+#X obj 172 97 t b b;
+#X msg 199 120 0;
+#X obj 65 201 t f f;
+#X obj 61 230 / 50;
+#X obj 67 260 - 1;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 9 0;
+#X connect 3 0 2 1;
+#X connect 5 0 1 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X connect 7 1 8 0;
+#X connect 8 0 2 1;
+#X connect 9 0 10 0;
+#X connect 9 1 4 1;
+#X connect 10 0 11 0;
+#X connect 11 0 4 0;
+#X restore 449 226 pd fill;
+#X obj 449 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 476 197 <- reset array-copy-help;
+#X text 276 7 Inlets \; 1&2 - normalized range to copy from \; 3 -
+onset to copy to \; 4 - array to copy from \; 5 - array to copy to
+(same as source array if unset) \;;
+#X obj 37 197 array-copy array-copy-help array-copy-paste;
+#X obj 36 232 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 41 87 20 20 40;
+#X obj 275 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 319 117 symbol;
+#X msg 114 86 10 10 30 array-copy-help array-copy-paste;
+#X msg 197 159 symbol array-copy-paste;
+#X connect 3 0 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;
+#X connect 9 0 6 4;
+#X connect 10 0 6 4;
+#X connect 11 0 6 0;
+#X connect 12 0 6 3;

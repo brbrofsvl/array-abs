@@ -1,0 +1,341 @@
+#N canvas 1001 38 787 1122 10;
+#X text 32 75 The following are array-manipulation abstractions included
+in the library. In general they try to follow the API of the;
+#X obj 34 106 array;
+#X text 72 106 objects which became part of Pd in version 0.45.;
+#X obj 38 237 list-splat;
+#X obj 40 364 array-read;
+#X obj 180 364 tabread;
+#X obj 40 569 array-write;
+#X text 105 239 and other abstractions allow the list-abs library;
+#X text 230 364 with negative index support.;
+#X text 235 393 with negative index support.;
+#X obj 180 393 tabread4;
+#X text 235 569 with negative index support.;
+#X text 135 364 - Like;
+#X text 135 393 - Like;
+#X text 135 569 - Like;
+#X obj 180 569 tabwrite;
+#X obj 40 598 array-swap;
+#X obj 40 626 array-swap2;
+#X text 135 626 - Swap \, but provide one of the values literally.
+;
+#X text 35 213 --------------------- POINTWISE READING AND WRITING
+---------------------, f 73;
+#X text 175 1151 - Output a range with bounds-checking and direction.
+;
+#X text 39 769 Array ranges in Pd are given as an onset into the array
+and the number of points in the range. For these abstractions \, onset
+indices can be negative. A direction argument/value may be given to
+specify ranges to the right and to the left of the onset (inclusive).
+Zero or positive direction points right \, and negative points left.
+A negative number of points specifies the end or beginning of the array
+depending upon direction., f 72;
+#X text 38 919 For POSITIVE direction:;
+#X text 38 1025 For NEGATIVE direction:;
+#X text 48 939 An onset greater than (n-1) is set to n and results
+in a range with zero elements (i.e. p=0). Otherwise \, for zero or
+positive onset \, p is clipped so that the range does not extend above
+index n-1. An onset less than -n is set to -n. Otherwise \, for negative
+onsets \, the onset is mapped to onset+n and then p is clipped as with
+a positive onset. If wrapping from negative to positive is desired
+\, use the circular buffer abstractions., f 72;
+#X obj 43 1243 array-iterator;
+#X text 175 1245 - Iterate indices over a range with bounds-checking
+\, direction and variable stride., f 83;
+#X text 35 744 ------------------------- RANGES AND ITERATORS -------------------------
+, f 73;
+#X text 175 1335 - Lazily iterate indices using array as a circular
+buffer.;
+#X obj 43 1306 array-cbiterator;
+#X obj 43 1213 array-rangenorm;
+#X obj 43 1271 array-iteratorslow;
+#X text 175 1308 - Iterate indices using array as a circular buffer.
+;
+#X obj 43 1333 array-cbiteratorslow;
+#X text 32 27 ARRAY ABSTRACTION LIBRARY;
+#X obj 43 1182 array-rangerev;
+#X text 165 1444 - Copy and paste a range of values (same or different
+array)., f 61;
+#X obj 43 1866 array-sort;
+#X obj 43 2000 array-shsort;
+#X obj 43 2029 array-msort;
+#X obj 43 2059 array-qsort;
+#X obj 43 2517 array-merge;
+#X text 165 1747 - Randomly shuffle the elements of the given range
+in place.;
+#X text 165 1592 - Reverse elements of the given range in place.;
+#X text 165 1618 - Rotate elements of the given range in place.;
+#X text 35 2118 ---------------------------- SEARCHING RANGES ---------------------------
+, f 73;
+#X text 39 2145 Abstractions for finding values in arrays., f 77;
+#X obj 43 2170 array-find;
+#X obj 43 2199 array-findlast;
+#X text 175 1273 - Lazily iterate indices over a range with bounds-checking
+\, direction \, and variable stride., f 73;
+#X text 165 2368 - Find a subrange in a range whose values are equal
+to the given value. Assumes range is sorted or partitioned using given
+value as pivot., f 72;
+#X text 165 2518 - Merge two sorted ranges into one sorted range (in
+the same or a different array)., f 83;
+#X text 35 2448 ---------------------------- SET OPERATIONS ---------------------------
+, f 73;
+#X obj 43 2545 array-includes;
+#X text 39 2480 Abstractions for set operations on sorted ranges.;
+#X obj 43 2268 array-findlist;
+#X text 165 2271 - Find an ordered list in a range and return the subrange
+if found., f 67;
+#X text 165 2546 - True if all of the elements in one sorted range
+are found as a subset in the other., f 85;
+#X text 165 2572 - Get the set intersection of two sorted ranges as
+a list., f 85;
+#X text 165 2628 - Get the one-sided set difference between two sorted
+ranges as a list., f 85;
+#X text 165 2600 - Get the set union of two sorted ranges as a list.
+, f 85;
+#X text 165 2656 - Get the symmetric set difference between two sorted
+ranges as a list., f 85;
+#X obj 43 2372 array-equalrange;
+#X text 165 2407 - Find first position where two ranges differ.;
+#X text 38 4275 Updated for;
+#N canvas 874 538 268 232 version 0;
+#X obj 55 50 cnv 15 155 100 empty empty pd~ 20 40 0 65 -262144 -1 0
+;
+#X obj 55 50 cnv 15 155 9 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 55 141 cnv 5 155 9 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 201 50 cnv 5 9 100 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 55 50 cnv 15 9 100 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 171 131 cnv 15 29 9 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 171 60 cnv 5 29 9 empty empty empty 20 12 0 14 -1 -66577 0;
+#X obj 65 60 cnv 5 29 9 empty empty empty 20 12 0 14 -1 -66577 0;
+#X obj 65 131 cnv 15 29 9 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 73 160 cnv 15 120 32 empty empty 0.46.7 4 16 0 32 -262144 -1
+0;
+#X restore 113 4275 pd version 0.46.7;
+#X text 175 1210 - Convert a range with direction to a standard onset+points
+range. Assumes input is bounds-checked. Onset must be positive., f
+66;
+#X text 175 1176 - Reverse direction of a range and update onset. Assumes
+input is bounds-checked. Onset must be positive., f 66;
+#X obj 43 1442 array-copy;
+#X text 39 257 to support negative indices \, in a manner similar to
+Python lists. The array abstractions also support negative indices
+\, with index -1 pointing to the end of the array \, -2 pointing to
+the value before that \, and so forth. If the size of the array is
+n \, then indices greater than (n-1) and less than (-n) refer to the
+end of the array and the beginning of the array \, respectively. Negative-index
+support incurs some overhead., f 72;
+#X obj 40 656 tabswap;
+#X text 33 125 Likewise \, they are intended to match the list-abs
+library syntax when possible. Some exceptions are described below.
+Although the new array objects have been generalized to work with both
+named arrays and arrays in data structures \, these abstractions work
+with named arrays only., f 73;
+#X text 165 2296 - Use binary search to find the first instance of
+a value in a range. Assumes range is sorted or partitioned using given
+value as pivot., f 70;
+#X text 165 2333 - Use binary search to find the last instance of a
+value in a range. Assumes range is sorted or partitioned using given
+value as pivot., f 70;
+#X obj 43 2339 array-searchlast;
+#X obj 40 686 tabswap2;
+#X text 135 656 - Swap using tabread/tabwrite syntax. No negative indices
+\, and less overhead., f 81;
+#X text 135 678 - Swap using tabread/tabwrite syntax \, but provide
+one of the values literally. No negative indices \, and less overhead.
+, f 78;
+#X obj 43 2233 array-findall;
+#X text 35 1373 --------------------------- COPYING AND MOVING RANGES
+--------------------------, f 80;
+#X text 39 1400 Abstractions for copying and moving entire ranges.
+In order to reduce the number of inlets \, THESE ASSUME INPUT RANGES
+AND INDICES ARE ALREADY BOUNDS-CHECKED AND NORMALIZED., f 93;
+#X obj 43 1472 array-rangeswap;
+#X text 165 1474 - Swap elements of two ranges (same or different array).
+, f 61;
+#X text 135 598 - Swap values at the given indices. See also;
+#X obj 408 598 array-rangeswap;
+#X text 39 869 These deluxe range objects generally bounds check in
+the following manner \, where n is the size of the array and p is the
+number of points in the range:, f 72;
+#X obj 43 1590 array-reverse;
+#X obj 43 3339 array-chebsum;
+#X obj 43 3429 array-hann;
+#X text 165 3340 - Fill a range with a weighted sum of Chebyschev polynomials.
+, f 61;
+#X text 165 3430 - Fill a range with a Hann window.;
+#X obj 43 3459 array-hamming;
+#X text 165 3460 - Fill a range with a Hamming window.;
+#X text 165 3520 - Fill a range with a Gaussian window.;
+#X obj 43 3549 array-kaiser;
+#X text 165 3550 - Fill a range with a Kaiser window.;
+#X obj 43 3579 array-welch;
+#X text 165 3580 - Fill a range with a Welch window.;
+#X obj 43 3609 array-blackman;
+#X text 165 3610 - Fill a range with a Blackman window.;
+#X obj 43 3369 array-window;
+#X text 165 3370 - Fill a range with a specified window function.;
+#X obj 43 3399 array-windapp;
+#X obj 43 3489 array-coswin;
+#X text 165 3490 - Fill a range with a Cosine window.;
+#X obj 43 3639 array-bl-harris;
+#X text 165 3400 - Apply a specified window function (multiplicatively)
+to the elements in a range., f 82;
+#X text 135 423 - Like;
+#X text 254 423 but with Hermite rather than Lagrange interpolation.
+;
+#X obj 43 1836 array-predpart;
+#X obj 43 2404 array-compare;
+#X text 165 2686 - Get the unique values in a sorted range as a list.
+, f 85;
+#X obj 43 3307 array-additive;
+#X obj 43 3245 array-sinesum;
+#X obj 43 3275 array-cosinesum;
+#X text 165 3270 - Fill a range with a weighted sum of cosine waves
+\; generalizes the standard cosinesum method of arrays.;
+#X text 165 3308 - Fill a range with a weighted sum of harmonics with
+specified phase., f 69;
+#X text 35 3108 ----------------------------- RANGE FILLING -----------------------------
+, f 73;
+#X text 39 3129 Abstractions for filling ranges with values.;
+#X text 165 3176 - Fill a range with random integers between max and
+min values., f 63;
+#X obj 43 3175 array-randomint;
+#X obj 43 3208 array-randomfloat;
+#X text 165 3210 - Fill a range with 24-bit random floats between -1
+and 1 \, with even distribution., f 87;
+#X text 35 2728 ------------------------------ FUNCTIONAL ------------------------------
+, f 73;
+#X text 39 2749 Abstractions implementing algorithms common in functional
+programming., f 76;
+#X obj 43 2780 array-map;
+#X obj 43 2811 array-reduce;
+#X text 165 2776 - Map the values of a range with user-defined operation
+\, and write the results to the same or a different range., f 58;
+#X obj 43 2841 array-filter;
+#X text 165 2807 - Return a single value by iteratively applying a
+user-defined binary operation \, starting with the first two values
+in the range and continuing with the result and the next value., f
+89;
+#X text 165 2844 - Return a list containing elements for which a user-defined
+predicate is true., f 89;
+#X obj 43 2571 array-inter;
+#X obj 43 2599 array-union;
+#X obj 43 2627 array-diff;
+#X obj 43 2655 array-symdiff;
+#X obj 43 2685 array-unique;
+#X text 35 2877 ------------------------------ STATISTICS -------------------------------
+, f 73;
+#X text 39 2898 Statistical operations on ranges.;
+#X text 165 2922 - Compute the arithmetic mean of the values in a range.
+;
+#X obj 43 3017 array-stddev;
+#X text 165 2955 - Compute the geometric mean of the values in a range.
+, f 74;
+#X text 165 2982 - Compute the harmonic mean of the values in a range.
+, f 74;
+#X text 165 3017 - Compute the standard deviation of the values in
+a range., f 74;
+#X obj 43 3047 array-rms;
+#X text 165 3042 - Compute the root-mean-square of the values in a
+range. This is the same as computing the standard deviation assuming
+the mean to be 0, f 74;
+#X text 165 3641 - Fill a range with a Blackman-Harris window.;
+#X obj 43 1898 array-ssort;
+#X text 35 1510 ----------------------------- RANGE MUTATION ----------------------------
+, f 73;
+#X obj 43 1805 array-part3;
+#X obj 43 1775 array-part;
+#X obj 43 1746 array-shuffle;
+#X text 39 1537 These abstractions manipulate existing elements in
+ranges by changing their order. Input is bounds-checked and normalized
+internally (except where indicated otherwise) \, so deluxe ranges with
+negative direction are treated the same as the equivalent forward ranges.
+, f 90;
+#X text 165 1690 - Write a single value at the onset of a bounds-checked
+and normalized range and destructively move all of the other elements
+one spot to the right. Uses [tab*] syntax., f 71;
+#X text 165 1831 - Two-way partition a range using a user-defined predicate.
+Returns the two subranges on either side of the pivot point., f 70
+;
+#X text 165 1866 - Sort elements of a range in place \, with a choice
+of algorithm., f 64;
+#X text 165 1893 - Sort elements of a range in place using a selection
+sort (probably the fastest for most arrays up to N=10000 due to minimal
+overhead)., f 68;
+#X text 165 1934 - Sort elements of a range in place using an insertion
+sort.;
+#X text 165 2003 - Sort elements of a range in place using a Shell
+sort.;
+#X text 165 2032 - Sort elements of a range in place using a mergesort.
+;
+#X text 165 2062 - Sort elements of a range in place using a quicksort.
+;
+#X text 48 1045 An onset greater than (n-1) is set to n-1. Otherwise
+\, for zero or positive onset \, p is clipped so that the range does
+not extend below index 0 An onset less than -n is set to 100 and results
+in a range with zero elements (i.e. p=0). Otherwise \, for a negative
+onset \, the onset is mapped to onset+n and then p is clipped as with
+a positive onset. If wrapping from positive to negative is desired
+\, use the circular buffer abstractions., f 74;
+#X obj 40 423 array-read4h;
+#X obj 43 3519 array-gaussian;
+#X text 165 1648 - Write a list of values at the onset of the range
+and destructively move the other elements: to the right for a forward
+range or to the left for a backward range., f 83;
+#X obj 40 393 array-read4;
+#X obj 180 423 array-read4;
+#X text 165 3240 - Fill a range with a weighted sum of sine waves \;
+generalizes the standard sinesum method of arrays.;
+#X obj 43 2952 array-geommean;
+#X obj 43 2982 array-harmmean;
+#X obj 43 1616 array-rotate;
+#X obj 43 1152 array-range;
+#X obj 43 1654 array-insert;
+#X obj 43 1701 tabinsert;
+#X text 135 451 - Like;
+#X text 135 480 - Like;
+#X obj 180 451 array-read4;
+#X text 135 510 - An alternative;
+#X obj 180 480 array-read4h;
+#X obj 40 451 array-read6;
+#X obj 40 540 array-readsinc;
+#X text 135 540 - Table-reading with expensive \, high-quality windowed
+sinc interpolation., f 74;
+#X text 319 510 preserving both first and second derivatives at breakpoints.
+;
+#X obj 40 480 array-read6h;
+#X obj 239 509 array-read6h;
+#X text 255 451 but with 6-point quintic interpolation.;
+#X text 263 480 but with 6-point quintic interpolation.;
+#X obj 40 510 array-read6h2;
+#X text 165 2173 - Use linear search to find first instance of given
+value in a range and return the index., f 90;
+#X text 165 2202 - Use linear search to find last instance of given
+value in a range and return the index., f 90;
+#X text 165 2232 - Use linear search to find all instances of given
+value in a range and return indices as a list., f 71;
+#X text 165 1770 - Two-way partition a range using value at given index
+as pivot (in place). Returns the two subranges on either side of the
+pivot point., f 70;
+#X text 165 1800 - Three-way partition a range using value at given
+index as pivot (in place). Returns the two subranges on either side
+of the pivot point(s)., f 72;
+#X text 165 1963 - Sort elements of a range in place with an insertion
+sort \, using binary search to locate insertion point., f 61;
+#X obj 43 2921 array-mean;
+#X obj 43 2303 array-search;
+#X obj 43 1931 array-isort;
+#X obj 43 1966 array-bisort;
+#X text 35 3678 ---------------------------- AUDIO FUNCTIONS ----------------------------
+, f 73;
+#X text 39 3699 Miscellaneous audio abstractions.;
+#X obj 43 4086 array-partconv~;
+#X text 165 4081 - Vanilla implementation of partitioned convolution
+(e.g. for high-quality reverberation).;

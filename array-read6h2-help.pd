@@ -1,0 +1,68 @@
+#N canvas 720 89 1040 490 10;
+#X obj 653 34 loadbang;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read6h-dirac 13 float 2;
+#X coords 0 1 13 -1 100 70 1 0 0;
+#X restore 512 37 graph;
+#X obj 403 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 403 260 t f f;
+#X floatatom 826 292 5 0 0 0 - - -, f 5;
+#X floatatom 826 387 0 0 0 0 - - -;
+#X obj 93 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 93 260 t f f;
+#N canvas 170 54 826 842 graphs 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read6-lagrange 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 61 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read6h-hermite 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 431 graph;
+#X restore 511 130 pd graphs;
+#X text 583 133 <- open!;
+#X obj 159 419 tabwrite array-read6-lagrange;
+#X obj 469 419 tabwrite array-read6h-hermite;
+#X obj 403 234 array-iterator array-read6h-hermite;
+#X obj 93 234 array-iterator array-read6-lagrange;
+#X text 22 20 array-read6h: [array-read6] with Hermite interpolation
+\; Positive index range is 2 to n-3 \; Negative index range is -3 to
+-n+2;
+#X obj 688 171 noise~;
+#X obj 744 184 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 706 239 tabwrite~ array-read6h-dirac;
+#X obj 826 341 array-read6h2 array-read6h-dirac;
+#X obj 46 361 array-read6 array-read6h-dirac;
+#X obj 93 324 + 2;
+#X obj 403 314 + 2;
+#X obj 93 297 * 0.016;
+#X obj 403 287 * 0.016;
+#X msg 653 61 \; array-read6h-dirac const 0 \; array-read6h-dirac 6
+0.95;
+#X msg 653 123 \; array-read6h-dirac 0 0 0.95 0 -0.95 0 0.95 0 -0.95
+0 0.95 0 -0.95 0;
+#X obj 688 200 *~ 0.95;
+#X obj 356 361 array-read6h2 array-read6h-dirac;
+#X connect 0 0 24 0;
+#X connect 2 0 12 0;
+#X connect 3 0 23 0;
+#X connect 3 1 11 1;
+#X connect 4 0 18 0;
+#X connect 6 0 13 0;
+#X connect 7 0 22 0;
+#X connect 7 1 10 1;
+#X connect 12 0 3 0;
+#X connect 13 0 7 0;
+#X connect 15 0 26 0;
+#X connect 16 0 17 0;
+#X connect 18 0 5 0;
+#X connect 19 0 10 0;
+#X connect 20 0 19 0;
+#X connect 21 0 27 0;
+#X connect 22 0 20 0;
+#X connect 23 0 21 0;
+#X connect 26 0 17 0;
+#X connect 27 0 11 0;

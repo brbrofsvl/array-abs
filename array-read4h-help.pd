@@ -1,0 +1,78 @@
+#N canvas 311 325 1040 490 10;
+#X obj 653 34 loadbang;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read4h-dirac 9 float 2;
+#X coords 0 1 9 -1 100 70 1 0 0;
+#X restore 512 37 graph;
+#X obj 403 234 array-iterator array-read4h-hermite;
+#X obj 403 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 469 419 tabwrite array-read4h-hermite;
+#X obj 403 260 t f f;
+#X obj 403 314 + 1;
+#X obj 356 361 array-read4h array-read4h-dirac;
+#X floatatom 826 292 5 0 0 0 - - -, f 5;
+#X floatatom 826 387 0 0 0 0 - - -;
+#X obj 826 341 array-read4h array-read4h-dirac;
+#X obj 93 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 93 260 t f f;
+#X obj 93 324 + 1;
+#X obj 159 419 tabwrite array-read4-lagrange;
+#X obj 93 234 array-iterator array-read4-lagrange;
+#X obj 46 361 array-read4 array-read4h-dirac;
+#N canvas 0 22 1026 855 graphs 1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read4-lagrange 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 61 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read4h-hermite 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 441 graph;
+#X text 621 115 Pd's cubic interpolation uses a Lagrange (la-GRANZH)
+interpolator. While it offers very good performance with minimal distortion
+\, as you can see on the left (after you run the routines on the main
+help patch) \, its first derivative has discontinuities. This is seen
+in the sharp corners at the break points \, especially at the peak.
+On the other hand \, the second derivative is matched at the breakpoints.
+Csound also uses a Lagrange interpolator in routines employing cubic
+interpolation., f 54;
+#X text 621 485 An Hermite (air-MEET) interpolator still provides cubic
+interpolation \, but instead of trying to find a polynomial that matches
+the four control points like Lagrange \, it matches the two inner control
+points and uses the four points to match the approximate first derivative
+\, ensuring that the first derivative is the same at each break point.
+This removes the sharp corners. On the other hand \, the second derivative
+is not matched at the breakpoints \, which can produce a discontinuity
+of inflection at breakpoints \, which is visible at the zero-crossings
+of the example whose source has several impulses. Supercollider uses
+an Hermite interpolator in routines employing cubic interpolation.
+, f 54;
+#X restore 511 130 pd graphs;
+#X msg 653 61 \; array-read4h-dirac 0 0 0 0 0 0.95 0 0 0 0;
+#X text 22 20 array-read4h: [array-read4] with Hermite interpolation
+\; Positive index range is 1 to n-2 \; Negative index range is -2 to
+-n+1;
+#X text 583 133 <- open!;
+#X obj 93 297 * 0.012;
+#X obj 403 287 * 0.012;
+#X msg 653 103 \; array-read4h-dirac 0 0 0.95 0 -0.95 0 0.95 0 -0.95
+0;
+#X connect 0 0 18 0;
+#X connect 2 0 5 0;
+#X connect 3 0 2 0;
+#X connect 5 0 22 0;
+#X connect 5 1 4 1;
+#X connect 6 0 7 0;
+#X connect 7 0 4 0;
+#X connect 8 0 10 0;
+#X connect 10 0 9 0;
+#X connect 11 0 15 0;
+#X connect 12 0 21 0;
+#X connect 12 1 14 1;
+#X connect 13 0 16 0;
+#X connect 15 0 12 0;
+#X connect 16 0 14 0;
+#X connect 21 0 13 0;
+#X connect 22 0 6 0;

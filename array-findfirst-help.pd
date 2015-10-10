@@ -1,0 +1,54 @@
+#N canvas 399 435 788 430 10;
+#X obj 420 146 array define findfirst-help;
+#X obj 406 50 loadbang;
+#X obj 406 175 array size findfirst-help;
+#X obj 406 227 until;
+#X obj 406 200 t f b;
+#X msg 510 247 0;
+#X obj 495 277 f;
+#X obj 530 277 + 1;
+#X obj 406 352 tabwrite findfirst-help;
+#X text 592 145 <- click to open;
+#X obj 372 50 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 224 48 click to repopulate ->;
+#X obj 406 321 random 11;
+#X obj 406 251 t b b;
+#X msg 106 108 5;
+#X obj 84 187 print index;
+#X obj 274 160 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 143 108 20;
+#X floatatom 84 88 5 0 10 0 - - -, f 5;
+#X obj 84 137 array-findfirst findfirst-help;
+#X obj 261 187 print not-found;
+#X floatatom 101 165 5 0 0 0 - - -, f 5;
+#X msg 420 84 resize 30 \, bounds 0 10 29 0 \, xlabel 0 1 2 3 4 5 6
+7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 \,
+xticks 0 1 1 \, ylabel 0 1 2 3 4 5 6 7 8 9 10 \, yticks 0 1 1;
+#X msg 251 103 symbol findfirst-help;
+#X msg 234 79 symbol findfirst-other;
+#X connect 1 0 22 0;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 3 0 13 0;
+#X connect 4 0 3 0;
+#X connect 4 1 5 0;
+#X connect 5 0 6 1;
+#X connect 6 0 7 0;
+#X connect 6 0 8 1;
+#X connect 7 0 6 1;
+#X connect 10 0 2 0;
+#X connect 12 0 8 0;
+#X connect 13 0 12 0;
+#X connect 13 1 6 0;
+#X connect 14 0 19 0;
+#X connect 17 0 19 0;
+#X connect 18 0 19 0;
+#X connect 19 0 15 0;
+#X connect 19 0 21 0;
+#X connect 19 1 16 0;
+#X connect 19 1 20 0;
+#X connect 22 0 0 0;
+#X connect 23 0 19 1;
+#X connect 24 0 19 1;

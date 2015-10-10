@@ -1,0 +1,83 @@
+#N canvas 894 150 690 409 10;
+#N canvas 541 454 474 448 fill 0;
+#X obj 65 114 until;
+#X obj 65 176 f;
+#X obj 102 177 + 1;
+#X obj 171 45 inlet;
+#X obj 172 70 t b b;
+#X msg 199 120 0;
+#X obj 65 201 t f f;
+#X obj 67 260 - 1;
+#X msg 65 87 100;
+#X obj 61 230 / 50;
+#X obj 63 292 tabwrite array-isort-help;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 6 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 4 1 5 0;
+#X connect 5 0 1 1;
+#X connect 6 0 9 0;
+#X connect 6 1 10 1;
+#X connect 7 0 10 0;
+#X connect 8 0 0 0;
+#X connect 9 0 7 0;
+#X restore 469 276 pd fill;
+#X obj 442 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 37 232 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 69 233 <- bang when done;
+#X obj 442 252 t b b;
+#X text 256 27 Inlets \; 1&2 - normalized range to sort \; 3 - Direction
+-- 0 or positive for ascending \, negative for descending \; 4 - array
+name \;, f 71;
+#X obj 192 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 63 27 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 60 57 * -1;
+#X obj 180 102 * -1;
+#X obj 472 224 loadbang;
+#X msg 59 78 0 100 1 \$1;
+#X msg 88 110 70 15 -1 -1;
+#X msg 37 132 20 40 1 1;
+#X msg 158 124 35 10 1 \$1 array-isort-other;
+#X obj 418 113 array define array-isort-help 100;
+#X obj 418 140 array define -k array-isort-other;
+#A 0 0 0 0 0 0.18667 0.273338 0.406674 0.440007 0.39334 0.280005 0.173336
+0.173336 0.202226 0.231115 0.260004 0.380006 0.426674 0.473341 0.533342
+0.58001 0.506675 0.506675 0.546676 0.680012 0.76668 0.826681 0.920016
+-0.166667 0.486667 0.113335 -0.0266671 -0.593333 0.260004 0.340006
+0.153329 -0.0866747 0.573333 -0.480015 0.126669 0.0800014 -0.586667
+-0.0800014 -0.253338 -0.360006 -0.520009 0.54 -0.0266671 -0.0133336
+0.100002 -0.26 0.273338 0.37334 0.380006 0.320005 0.260004 0.226671
+0.193337 0.233337 0.246671 0.320005 0.41334 0.0533342 -0.0533342 -0.120002
+-0.120002 -0.106668 -0.0533342 0.060001 0.180003 0.300005 0.420007
+0.503342 0.653344 0.76668 0.846681 0.853348 0.886682 0.833347 0.640011
+-0.660011 -0.660011 -0.660011 -0.640011 -0.640011 -0.913349 -0.740013
+-0.566676 -0.460008 -0.460008 0.406674 0.453341 0.460008 0.460008 0.460008
+0.420007 0.420007 0.440007 0 0 0;
+#X msg 226 159 symbol array-isort-help;
+#X obj 442 303 array-range array-isort-help, f 30;
+#X obj 442 336 array-shuffle array-isort-help;
+#X text 476 197 <- reset array-isort-help;
+#X obj 37 197 array-isort array-isort-help;
+#X connect 1 0 4 0;
+#X connect 4 0 18 0;
+#X connect 4 1 0 0;
+#X connect 6 0 9 0;
+#X connect 7 0 8 0;
+#X connect 8 0 11 0;
+#X connect 9 0 14 0;
+#X connect 10 0 4 0;
+#X connect 11 0 21 0;
+#X connect 12 0 21 0;
+#X connect 13 0 21 0;
+#X connect 14 0 21 0;
+#X connect 17 0 21 4;
+#X connect 18 0 19 0;
+#X connect 18 1 19 1;
+#X connect 21 0 2 0;

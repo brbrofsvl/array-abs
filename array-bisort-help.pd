@@ -1,0 +1,83 @@
+#N canvas 894 150 690 409 10;
+#N canvas 541 454 474 448 fill 0;
+#X obj 65 114 until;
+#X obj 65 176 f;
+#X obj 102 177 + 1;
+#X obj 171 45 inlet;
+#X obj 172 70 t b b;
+#X msg 199 120 0;
+#X obj 65 201 t f f;
+#X obj 67 260 - 1;
+#X msg 65 87 100;
+#X obj 61 230 / 50;
+#X obj 63 292 tabwrite array-bisort-help;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 6 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 4 1 5 0;
+#X connect 5 0 1 1;
+#X connect 6 0 9 0;
+#X connect 6 1 10 1;
+#X connect 7 0 10 0;
+#X connect 8 0 0 0;
+#X connect 9 0 7 0;
+#X restore 469 276 pd fill;
+#X obj 442 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 37 232 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 69 233 <- bang when done;
+#X obj 442 252 t b b;
+#X obj 192 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 63 27 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 60 57 * -1;
+#X obj 180 102 * -1;
+#X obj 472 224 loadbang;
+#X msg 59 78 0 100 1 \$1;
+#X text 476 197 <- reset array-isort-help;
+#X obj 37 197 array-bisort array-bisort-help;
+#X msg 158 124 35 10 1 \$1 array-bisort-other;
+#X msg 226 159 symbol array-bisort-help;
+#X obj 418 113 array define array-bisort-help 100;
+#X obj 418 140 array define -k array-bisort-other;
+#A 0 0.0266666 -0.0866667 0.136669 0.180003 0.24667 0.320005 0.373339
+0.340005 0.193336 0.133335 0.0333334 -0.00666726 0.526667 -0.16667
+-0.253338 -0.380007 -0.533343 -0.613344 -0.626678 -0.613344 -0.546676
+0.173333 -0.38834 -0.296672 -0.205004 -0.113336 -0.0266676 0.0600005
+0.186669 0.546667 0.24667 -0.64 0.303338 0.353339 0.424451 0.495563
+0.566676 0.60001 0.04 0.726678 0.94 -0.106667 0.886681 0.973349 1.01335
+-0.12 0.540009 0.520008 0.480008 0.440007 0.39334 0.346672 0.633333
+0.146669 -0.58001 -0.633345 -0.573344 -0.513342 -0.260005 0.6 -0.0733351
+0.046667 0.126668 0.160002 0.160002 0.133335 -0.553333 0.106668 0.0866677
+0.0800009 0.0733341 0.0733341 0.0733341 0.0800009 0.133335 0.326667
+0.100001 0.126668 0.193336 -0.553333 0.240004 0.266671 0.266671 0.193336
+0.166669 0.140002 0.100001 0.0199999 -0.0233342 0.4 -0.126669 -0.18667
+-0.223338 -0.486667 -0.283339 -0.306672 -0.653333 -0.360007 0 0;
+#X obj 442 302 array-range array-bisort-help, f 30;
+#X obj 442 336 array-shuffle array-bisort-help;
+#X text 256 27 Inlets \; 1 \, 2 \, 3 - range to sort \; 4 - Direction
+-- 0 or positive for ascending \, negative for descending \; 5 - array
+name \;, f 71;
+#X msg 37 132 20 40 1 1;
+#X msg 68 103 70 15 -1 -1;
+#X connect 1 0 4 0;
+#X connect 4 0 17 0;
+#X connect 4 1 0 0;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 10 0;
+#X connect 8 0 13 0;
+#X connect 9 0 4 0;
+#X connect 10 0 12 0;
+#X connect 12 0 2 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 4;
+#X connect 17 0 18 0;
+#X connect 17 1 18 1;
+#X connect 20 0 12 0;
+#X connect 21 0 12 0;

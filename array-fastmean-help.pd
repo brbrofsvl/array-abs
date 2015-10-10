@@ -1,0 +1,64 @@
+#N canvas 339 425 697 316 10;
+#N canvas 541 454 474 448 fill 0;
+#X obj 65 64 loadbang;
+#X obj 65 114 until;
+#X obj 65 176 f;
+#X obj 102 177 + 1;
+#X obj 171 72 inlet;
+#X obj 172 97 t b b;
+#X msg 199 120 0;
+#X obj 65 201 t f f;
+#X obj 67 260 - 1;
+#X msg 65 87 100;
+#X obj 61 230 / 50;
+#X obj 63 292 tabwrite array-fastmean-help;
+#X connect 0 0 9 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 7 0;
+#X connect 3 0 2 1;
+#X connect 4 0 5 0;
+#X connect 5 0 9 0;
+#X connect 5 1 6 0;
+#X connect 6 0 2 1;
+#X connect 7 0 10 0;
+#X connect 7 1 11 1;
+#X connect 8 0 11 0;
+#X connect 9 0 1 0;
+#X connect 10 0 8 0;
+#X restore 449 226 pd fill;
+#X obj 449 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 47 156 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 226 159 symbol array-fastmean-help;
+#X floatatom 37 226 0 0 0 0 - - -;
+#X obj 418 113 array define array-fastmean-help 100;
+#X text 65 19 Inlets \; 1 \, 2 \, 3 - onset \, points \, and direction
+of range over which to find arithmetic mean. Defaults to entire array.
+\; 4 - array name \;;
+#X obj 418 140 array define -k array-fastmean-other;
+#A 0 0 0.193336 0.24667 0.286671 0.300005 0.326672 0.326672 0.326672
+0.326672 0.326672 0.320005 0.293338 0.233337 0.166669 0.080001 -0.0733349
+-0.126669 -0.200004 -0.260005 -0.333339 -0.346673 -0.346673 -0.360006
+-0.400007 -0.426674 -0.340006 -0.18667 -0.0600014 0.133335 0.220003
+0.353339 0.466674 0.500008 0.553342 0.606676 0.665011 0.723345 0.78168
+0.833333 0.833333 0.833333 0.846667 0.866667 0.920001 0.946669 0.953335
+0.493341 0.266671 0.22667 0.240004 0.260004 0.306672 0.400006 0.500008
+0.593343 0.546676 0.41334 0.320005 -0.040001 -0.0866685 -0.133336 -0.16667
+-0.200004 -0.260005 -0.283338 -0.306672 -0.340006 -0.346673 -0.360006
+-0.376673 -0.39334 -0.520009 -0.640011 -0.620011 -0.606677 -0.600011
+-0.600011 -0.600011 -0.600011 -0.600011 -0.600011 -0.540009 -0.473342
+-0.366673 -0.313339 -0.313339 -0.313339 -0.260005 -0.236671 -0.160003
+-0.0933353 -0.00666714 0.106668 0.146669 0.220003 0.253337 0.253337
+0.253337 0.253337 0.253337;
+#X text 476 197 <- reset array-fastmean-help;
+#X obj 37 197 array-fastmean array-fastmean-help;
+#X msg 114 126 62 10 -1 array-fastmean-other;
+#X msg 37 127 20 40 1;
+#X connect 1 0 0 0;
+#X connect 2 0 9 0;
+#X connect 3 0 9 3;
+#X connect 9 0 4 0;
+#X connect 10 0 9 0;
+#X connect 11 0 9 0;

@@ -1,0 +1,59 @@
+#N canvas 786 574 1040 490 10;
+#X obj 653 33 loadbang;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read6-sin 11 float 2;
+#X coords 0 1 11 -1 100 70 1 0 0;
+#X restore 512 36 graph;
+#X obj 403 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 403 260 t f f;
+#X floatatom 826 292 5 0 0 0 - - -, f 5;
+#X floatatom 826 387 0 0 0 0 - - -;
+#X obj 93 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 93 260 t f f;
+#X obj 93 324 + 1;
+#N canvas 152 125 1026 855 graphs 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read4 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 61 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-read6 500 float 2;
+#X coords 0 1 500 -1 500 300 1 0 0;
+#X restore 84 421 graph;
+#X restore 511 129 pd graphs;
+#X text 22 20 array-read4h: [array-read4] with Hermite interpolation
+\; Positive index range is 1 to n-2 \; Negative index range is -2 to
+-n+1;
+#X text 583 132 <- open!;
+#X obj 199 419 tabwrite array-read4;
+#X obj 509 419 tabwrite array-read6;
+#X obj 93 234 array-iterator array-read4;
+#X obj 403 234 array-iterator array-read6;
+#X obj 46 361 array-read4 array-read6-sin;
+#X obj 356 361 array-read6 array-read6-sin;
+#X msg 685 128 \; array-read6-sin const 0;
+#X obj 826 341 array-read6 array-read6-sin;
+#X msg 653 60 \; array-read6-sin 0 0 0.95 0 -0.95 0 0.95 0 -0.95 0
+0.95 0;
+#X obj 403 314 + 1;
+#X obj 403 287 * 0.016;
+#X obj 93 297 * 0.016;
+#X connect 0 0 20 0;
+#X connect 2 0 15 0;
+#X connect 3 0 22 0;
+#X connect 3 1 13 1;
+#X connect 4 0 19 0;
+#X connect 6 0 14 0;
+#X connect 7 0 23 0;
+#X connect 7 1 12 1;
+#X connect 8 0 16 0;
+#X connect 14 0 7 0;
+#X connect 15 0 3 0;
+#X connect 16 0 12 0;
+#X connect 17 0 13 0;
+#X connect 19 0 5 0;
+#X connect 21 0 17 0;
+#X connect 22 0 21 0;
+#X connect 23 0 8 0;

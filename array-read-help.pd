@@ -1,0 +1,15 @@
+#N canvas 627 469 816 352 10;
+#X obj 483 84 array define array-read-cos;
+#X obj 86 171 array-read array-read-cos;
+#X obj 483 152 loadbang;
+#X obj 483 118 array define array-read-sin;
+#X msg 233 126 symbol array-read-sin;
+#X floatatom 86 128 5 0 0 0 - - -, f 5;
+#X floatatom 86 197 0 0 0 0 - - -;
+#X text 82 80 array-read: tabread with negative indices;
+#X msg 483 179 \; array-read-cos cosinesum 16 0 1 \; array-read-sin
+sinesum 16 1 \;;
+#X connect 1 0 6 0;
+#X connect 2 0 8 0;
+#X connect 4 0 1 1;
+#X connect 5 0 1 0;

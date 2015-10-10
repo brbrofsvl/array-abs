@@ -1,0 +1,28 @@
+#N canvas 364 185 835 312 10;
+#X floatatom 168 182 5 0 0 0 - - -, f 5;
+#X obj 448 30 loadbang;
+#X obj 575 211 list prepend set;
+#X obj 575 238 list trim;
+#X obj 573 153 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 555 268 0 1 2 3 4 5 6 7 8 9 10 0.5 0.5 0.5;
+#X floatatom 117 183 5 0 0 0 - - -, f 5;
+#X msg 33 147 0.5;
+#X obj 519 31 array define tabinsert-help 14;
+#X obj 575 185 array get tabinsert-help;
+#X msg 113 125 set tabinsert-help;
+#X obj 37 227 tabinsert tabinsert-help;
+#X msg 488 56 \; tabinsert-help 0 0 1 2 3 4 5 6 7 8 9 10 11 12 13;
+#X text 56 27 Inlets \; 1 - float to insert \; 2 \, 3 \, onset \, points
+\, of bounds-checked and normalized range to operate on. Defaults to
+entire array., f 54;
+#X connect 0 0 11 2;
+#X connect 1 0 12 0;
+#X connect 1 0 9 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 9 0;
+#X connect 6 0 11 1;
+#X connect 7 0 11 0;
+#X connect 9 0 2 0;
+#X connect 10 0 11 0;

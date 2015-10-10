@@ -1,0 +1,64 @@
+#N canvas 339 425 697 316 10;
+#N canvas 541 454 474 448 fill 0;
+#X obj 65 64 loadbang;
+#X obj 65 114 until;
+#X obj 65 176 f;
+#X obj 102 177 + 1;
+#X obj 171 72 inlet;
+#X obj 172 97 t b b;
+#X msg 199 120 0;
+#X obj 65 201 t f f;
+#X obj 67 260 - 1;
+#X msg 65 87 100;
+#X obj 61 230 / 50;
+#X obj 63 292 tabwrite array-mean-help;
+#X connect 0 0 9 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 7 0;
+#X connect 3 0 2 1;
+#X connect 4 0 5 0;
+#X connect 5 0 9 0;
+#X connect 5 1 6 0;
+#X connect 6 0 2 1;
+#X connect 7 0 10 0;
+#X connect 7 1 11 1;
+#X connect 8 0 11 0;
+#X connect 9 0 1 0;
+#X connect 10 0 8 0;
+#X restore 449 226 pd fill;
+#X obj 449 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 47 156 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 37 226 0 0 0 0 - - -;
+#X text 65 19 Inlets \; 1 \, 2 \, 3 - onset \, points \, and direction
+of range over which to find arithmetic mean. Defaults to entire array.
+\; 4 - array name \;;
+#X text 476 197 <- reset array-fastmean-help;
+#X msg 37 127 20 40 1;
+#X msg 114 126 62 10 -1 array-mean-other;
+#X msg 226 159 symbol array-mean-help;
+#X obj 418 113 array define array-mean-help 100;
+#X obj 418 140 array define -k array-mean-other;
+#A 0 -0.046668 -0.0866687 -0.126669 -0.153336 -0.160003 -0.16667 -0.16667
+-0.16667 -0.16667 -0.16667 -0.133336 -0.0933354 -0.046668 0.00666624
+0.166669 0.266671 0.373339 0.380006 0.406673 0.426673 0.440007 0.460007
+0.460007 0.44334 0.426673 0.346672 0.253337 0.140002 -0.620011 -0.686679
+-0.806681 -0.820014 -0.820014 -0.800014 -0.720013 -0.606677 -0.466675
+-0.406674 -0.346673 -0.500009 -0.520009 -0.453342 -0.253338 0.180003
+0.213336 0.300005 0.426673 0.466674 0.466674 0.45334 0.393339 0.346672
+0.300005 0.253337 0.20667 0.120001 0.073334 0.0266666 0.0866676 0.173336
+0.173336 0.180003 0.186669 0.210003 0.233337 0.250004 0.266671 0.306671
+0.326672 0.346672 0.366672 0.380006 0.393339 0.400006 0.400006 0.400006
+0.393339 0.373339 0.240004 0.0600005 -0.160003 -0.220004 -0.266672
+-0.293339 -0.300006 -0.300006 -0.300006 -0.280005 -0.246671 -0.230004
+-0.213337 -0.16667 -0.133336 -0.0933354 -0.0600016 -0.0333344 -0.0333344
+0 0 0;
+#X obj 37 197 array-mean array-mean-help;
+#X connect 1 0 0 0;
+#X connect 2 0 11 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 3;
+#X connect 11 0 3 0;
