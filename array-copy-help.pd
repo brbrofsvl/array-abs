@@ -1,4 +1,4 @@
-#N canvas 424 28 680 302 10;
+#N canvas 1061 36 680 302 10;
 #X obj 418 113 array define array-copy-help;
 #X obj 418 140 array define array-copy-paste;
 #N canvas 0 22 474 448 fill 0;
@@ -43,11 +43,11 @@ onset to copy to \; 4 - array to copy from \; 5 - array to copy to
 -1 -1;
 #X msg 319 117 symbol;
 #X msg 114 86 10 10 30 array-copy-help array-copy-paste;
-#X msg 197 159 symbol array-copy-paste;
+#X msg 315 168 symbol array-copy-paste;
 #X connect 3 0 2 0;
 #X connect 6 0 7 0;
 #X connect 8 0 6 0;
 #X connect 9 0 6 4;
 #X connect 10 0 6 4;
 #X connect 11 0 6 0;
-#X connect 12 0 6 3;
+#X connect 12 0 6 4;

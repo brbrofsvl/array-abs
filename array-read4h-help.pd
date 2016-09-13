@@ -21,7 +21,7 @@
 #X obj 159 419 tabwrite array-read4-lagrange;
 #X obj 93 234 array-iterator array-read4-lagrange;
 #X obj 46 361 array-read4 array-read4h-dirac;
-#N canvas 0 22 1026 855 graphs 1;
+#N canvas 0 22 1026 855 graphs 0;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array array-read4-lagrange 500 float 2;
 #X coords 0 1 500 -1 500 300 1 0 0;
